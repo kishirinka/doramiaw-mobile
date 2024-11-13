@@ -1,3 +1,5 @@
+#T U G A S 7
+
 ### 1. Pengertian stateless widget dan stateful widget serta perbedaan dari keduanya.
 Stateless widget adalah adalah widget yang tampilannya tidak berubah selama siklus hidupnya. Sekali ditampilkan, tampilan ini tidak akan berubah otomatis, kecuali jika komponen di-refresh atau dibangun ulang. Sedangkan Stateful widget adalah widget yang memiliki state (keadaan) yang bisa berubah. Artinya, stateful widget cocok untuk elemen yang membutuhkan interaksi pengguna atau memperbarui tampilan berdasarkan input, seperti formulir atau tombol. Ketika state berubah, tampilan widget juga diperbarui.
 #### P E R B E D A A N
@@ -32,3 +34,44 @@ Setelah struktur proyek siap, saya menambahkan tiga tombol yang masing-masing me
     `ItemHomepage("Logout", Icons.logout, const Color.fromARGB(255, 199, 71, 112)),`
 
 Untuk mengatur snackbar yang memunculkan pesan ketika tombol ditekan, Saya menggunakan `ScaffoldMessenger` untuk menampilkan pesan, spesifiknya paga bagian `SnackBar(content: Text("Kamu telah menekan ${item.name}!"))`. Nantinya, mama-nama tombol yang ditekan akan menggantikan `item.name`
+
+
+# T U G A S 8
+
+###
+Dalam Flutter, `const` digunakan untuk mendefinisikan nilai atau objek yang tidak berubah (immutable) dan diketahui pada waktu kompilasi, sehingga meningkatkan efisiensi memori dan performa aplikasi. Objek `const` hanya dibuat sekali di memori dan dapat digunakan kembali, mengurangi konsumsi memori dan waktu rendering. Sebaiknya gunakan `const` untuk widget statis, nilai tetap, atau koleksi yang tidak berubah. Hindari `const` jika nilainya hanya diketahui saat runtime (gunakan `final`) atau jika objek tersebut perlu berubah selama aplikasi berjalan. Dengan memanfaatkan `const`, kode menjadi lebih efisien, aman, dan mudah dipahami.
+
+###
+`Column` dan `Row` adalah widget tata letak di Flutter untuk menyusun anak-anaknya secara **vertikal** (`Column`) atau **horizontal** (`Row`). Keduanya memiliki `mainAxisAlignment` untuk mengatur distribusi pada sumbu utama dan `crossAxisAlignment` untuk mengatur perataan pada sumbu silang. Intinya gunakan `Column` untuk tata letak vertikal dan `Row` untuk horizontal.
+Contoh penggunaan:
+- **Column**: Menyusun teks, tombol, dan ikon secara vertikal.
+- **Row**: Menyusun elemen yang sama secara horizontal.
+
+###
+**Elemen Input yang Digunakan**
+1. **`TextFormField`**
+   - Digunakan untuk memasukkan teks seperti **Nama Produk**, **Harga Produk**, **Kategori Produk**, dan **Keterangan Produk**.
+2. **`ElevatedButton`**
+   - Digunakan untuk tombol pengiriman (submit).
+   - Memberikan aksi ketika tombol ditekan dengan validasi formulir (`_formKey.currentState!.validate()`).
+3. **`AlertDialog`**
+   - Menampilkan dialog setelah data produk berhasil tersimpan.
+   - Menyediakan tampilan ringkasan data yang diinput pengguna.
+4. **`Padding`**
+   - Memberikan jarak antar elemen input untuk tata letak yang lebih rapi.
+5. **`OutlineInputBorder`**
+   - Memberikan border pada input `TextFormField` dengan sudut melengkung (radius).
+6. **`Column` dan `SingleChildScrollView`**
+   - Digunakan untuk menyusun elemen input secara vertikal dan menangani skenario di mana elemen input melebihi layar.
+
+**Input yang Tidak Digunakan**
+- **Checkbox**, **Radio Button**, **DropdownButtonFormField**, atau **Switch**: Tidak ada input untuk pilihan biner atau dropdown.
+- **Slider** atau **RangeSlider**: Tidak ada input untuk memilih nilai dalam rentang.
+- **DatePicker** atau **TimePicker**: Tidak ada input tanggal atau waktu.
+- **Autocomplete**: Tidak digunakan untuk saran teks.
+
+###
+Pada projek ini, tema diatur menggunakan `ThemeData` pada `MaterialApp`, dengan warna biru. Tema utama menggunakan **`ColorScheme.fromSwatch`**, palet warnanya didefinisikan melalui `MaterialColor` berdasarkan warna utama `0xFF1B4778`, agar variasi warnanya bervariasi dari terang hingga gelap (level 50 hingga 900). Warna aksen juga disesuaikan melalui `copyWith` untuk mendukung warna sekunder. Pada kode ini saya juga mengaktifkan **Material Design 3** melalui `useMaterial3`, agar bisa diakses ke elemen semua elemen bawaan Flutter, seperti tombol, AppBar, dan ikon. Saya mengimplementasikan tema yang dibuat, salah satunya untuk warna navbar
+
+###
+Navigasi dalam Flutter dapat dilakukan menggunakan **Navigator** untuk perpindahan halaman berbasis tumpukan, atau **Named Routes** untuk mengorganisasi rute secara lebih terstruktur. Untuk mengirim data antar halaman, digunakan navigasi dengan argumen, sedangkan **Drawer** dan **BottomNavigationBar** cocok untuk navigasi antar fitur utama. Pada aplikasi kompleks, **state management** seperti Provider atau **GoRouter** digunakan untuk mengelola navigasi berbasis status secara deklaratif. Selain itu, **Deep Linking** memungkinkan membuka halaman langsung dari URL atau notifikasi, sehingga navigasi dapat disesuaikan dengan kebutuhan aplikasi dan pengalaman pengguna.

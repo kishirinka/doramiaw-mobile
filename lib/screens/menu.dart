@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:doramiaw/widgets/left_drawer.dart';
+import 'package:doramiaw/screens/itementry_form.dart';
 
 class MyHomePage extends StatelessWidget {
   final String studentID = '2306226864';
@@ -8,8 +10,8 @@ class MyHomePage extends StatelessWidget {
   MyHomePage({super.key});
 
   final List<ItemHomepage> items = [
-    ItemHomepage("Lihat Daftar Produk", Icons.mood, const Color.fromARGB(255, 122, 179, 226)),
-    ItemHomepage("Tambah Produk", Icons.add, const Color.fromARGB(255, 89, 163, 146)),
+    ItemHomepage("Lihat Daftar Produk", Icons.shopping_bag, const Color.fromARGB(255, 26, 75, 126)),
+    ItemHomepage("Tambah Produk", Icons.add, const Color.fromARGB(255, 53, 110, 158)),
     ItemHomepage("Logout", Icons.logout, const Color.fromARGB(255, 199, 71, 112)),
   ];
 
@@ -25,7 +27,9 @@ class MyHomePage extends StatelessWidget {
           ),
         ),
         backgroundColor: Theme.of(context).colorScheme.primary,
+        iconTheme: const IconThemeData(color: Colors.white),
       ),
+      drawer: const LeftDrawer(),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16.0),
         child: Column(
@@ -125,6 +129,15 @@ class ItemCard extends StatelessWidget {
             ..showSnackBar(
               SnackBar(content: Text("Kamu telah menekan ${item.name}!")),
             );
+
+              if (item.name == "Tambah Produk") {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const ItemEntryFormPage(),
+                ),
+              );// TODO: Gunakan Navigator.push untuk melakukan navigasi ke MaterialPageRoute yang mencakup MoodEntryFormPage.
+            }
         },
         child: Container(
           padding: const EdgeInsets.all(6), // Reduced padding for smaller button
