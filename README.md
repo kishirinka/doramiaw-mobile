@@ -1,4 +1,4 @@
-### T U G A S 7
+# T U G A S 7
 
 #### 1. Pengertian stateless widget dan stateful widget serta perbedaan dari keduanya  
 Stateless widget adalah widget yang tampilannya tidak berubah selama siklus hidupnya. Sekali ditampilkan, tampilan ini tidak akan berubah otomatis, kecuali jika komponen di-refresh atau dibangun ulang. Sedangkan Stateful widget adalah widget yang memiliki state (keadaan) yang bisa berubah. Artinya, stateful widget cocok untuk elemen yang membutuhkan interaksi pengguna atau memperbarui tampilan berdasarkan input, seperti formulir atau tombol. Ketika state berubah, tampilan widget juga diperbarui.  
@@ -39,18 +39,18 @@ Untuk mengatur Snackbar yang memunculkan pesan ketika tombol ditekan, saya mengg
 
 ---
 
-### T U G A S 8
+# T U G A S 8
 
-#### Kegunaan const di Flutter  
+#### 1. Kegunaan const di Flutter  
 Dalam Flutter, `const` digunakan untuk mendefinisikan nilai atau objek yang tidak berubah (immutable) dan diketahui pada waktu kompilasi, sehingga meningkatkan efisiensi memori dan performa aplikasi. Objek `const` hanya dibuat sekali di memori dan dapat digunakan kembali, mengurangi konsumsi memori dan waktu rendering. Sebaiknya gunakan `const` untuk widget statis, nilai tetap, atau koleksi yang tidak berubah. Hindari `const` jika nilainya hanya diketahui saat runtime (gunakan `final`) atau jika objek tersebut perlu berubah selama aplikasi berjalan. Dengan memanfaatkan `const`, kode menjadi lebih efisien, aman, dan mudah dipahami.  
 
-#### Penggunaan Column dan Row pada Flutter  
+#### 2. Penggunaan Column dan Row pada Flutter  
 `Column` dan `Row` adalah widget tata letak di Flutter untuk menyusun anak-anaknya secara **vertikal** (`Column`) atau **horizontal** (`Row`). Keduanya memiliki `mainAxisAlignment` untuk mengatur distribusi pada sumbu utama dan `crossAxisAlignment` untuk mengatur perataan pada sumbu silang. Intinya gunakan `Column` untuk tata letak vertikal dan `Row` untuk horizontal.  
 Contoh penggunaan:  
 - **Column**: Menyusun teks, tombol, dan ikon secara vertikal.  
 - **Row**: Menyusun elemen yang sama secara horizontal.  
 
-#### Elemen input yang digunakan pada halaman form yang dibuat pada tugas kali ini  
+#### 3. Elemen input yang digunakan pada halaman form yang dibuat pada tugas kali ini  
 **Elemen Input yang Digunakan**  
 1. **`TextFormField`**: Digunakan untuk memasukkan teks seperti **Nama Produk**, **Harga Produk**, **Kategori Produk**, dan **Keterangan Produk**.  
 2. **`ElevatedButton`**: Digunakan untuk tombol pengiriman (submit) dan memberikan aksi ketika tombol ditekan dengan validasi formulir (`_formKey.currentState!.validate()`).  
@@ -65,8 +65,8 @@ Contoh penggunaan:
 - **DatePicker** atau **TimePicker**: Tidak ada input tanggal atau waktu.  
 - **Autocomplete**: Tidak digunakan untuk saran teks.  
 
-#### Cara mengatur tema (theme) dalam aplikasi Flutter agar aplikasi yang dibuat konsisten  
+#### 4. Cara mengatur tema (theme) dalam aplikasi Flutter agar aplikasi yang dibuat konsisten  
 Pada proyek ini, tema diatur menggunakan `ThemeData` pada `MaterialApp`, dengan warna biru. Tema utama menggunakan **`ColorScheme.fromSwatch`**, palet warnanya didefinisikan melalui `MaterialColor` berdasarkan warna utama `0xFF1B4778`, agar variasi warnanya bervariasi dari terang hingga gelap (level 50 hingga 900). Warna aksen juga disesuaikan melalui `copyWith` untuk mendukung warna sekunder. Pada kode ini, saya juga mengaktifkan **Material Design 3** melalui `useMaterial3`, agar bisa diakses ke elemen semua elemen bawaan Flutter, seperti tombol, AppBar, dan ikon. Saya mengimplementasikan tema yang dibuat, salah satunya untuk warna navbar.  
 
-#### Cara menangani navigasi dalam aplikasi dengan banyak halaman pada Flutter  
+#### 5. Cara menangani navigasi dalam aplikasi dengan banyak halaman pada Flutter  
 Saya menggunakan Navigator untuk berpindah halaman dengan metode push, pop, dan pushReplacement, serta mengatur Named Routes untuk navigasi yang lebih terstruktur. Selain itu, saya membuat Drawer Menu untuk navigasi cepat ke halaman lain, serta membangun halaman dengan Form dan elemen input seperti TextFormField yang dilengkapi validasi. Saya juga menampilkan data dari form menggunakan dialog pop-up dengan fungsi showDialog(). Untuk menjaga struktur proyek, saya memindahkan halaman ke folder screens dan komponen UI ke folder widgets.  
