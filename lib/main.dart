@@ -1,18 +1,26 @@
+import 'package:doramiaw/screens/login.dart';
 import 'package:flutter/material.dart'; 
 import 'package:doramiaw/screens/menu.dart'; 
+import 'package:pbp_django_auth/pbp_django_auth.dart';
+import 'package:provider/provider.dart';
 
 void main() { 
   runApp(const MyApp()); 
 }
 
 class MyApp extends StatelessWidget { 
-  const MyApp({super.key}); 
+   const MyApp({super.key});
 
   // This widget is the root of your application.
   @override 
   Widget build(BuildContext context) { 
-    return MaterialApp(
-      title: 'Flutter Demo',
+    return Provider(
+      create: (_) {
+        CookieRequest request = CookieRequest();
+        return request;
+      },
+      child: MaterialApp(
+      title: 'Doramiaw',
       theme: ThemeData(
         colorScheme: ColorScheme.fromSwatch(
           primarySwatch: MaterialColor(
@@ -33,9 +41,9 @@ class MyApp extends StatelessWidget {
         ).copyWith(
           secondary: const Color.fromARGB(255, 27, 71, 120), // Warna aksen tetap
         ),
-        useMaterial3: true,
       ),
-      home: MyHomePage(),
-    ); 
+      home: const LoginPage()
+    ) 
+    );
   } 
 }

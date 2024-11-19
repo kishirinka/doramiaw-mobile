@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:doramiaw/widgets/left_drawer.dart';
 import 'package:doramiaw/screens/itementry_form.dart';
+import 'package:doramiaw/screens/item_card.dart';
 
 class MyHomePage extends StatelessWidget {
   final String studentID = '2306226864';
@@ -98,70 +99,6 @@ class InfoCard extends StatelessWidget {
             const SizedBox(height: 8.0),
             Text(content),
           ],
-        ),
-      ),
-    );
-  }
-}
-
-class ItemHomepage {
-  final String name;
-  final IconData icon;
-  final Color color;
-
-  ItemHomepage(this.name, this.icon, this.color);
-}
-
-class ItemCard extends StatelessWidget {
-  final ItemHomepage item;
-
-  const ItemCard({super.key, required this.item});
-
-  @override
-  Widget build(BuildContext context) {
-    return Material(
-      color: item.color,
-      borderRadius: BorderRadius.circular(12),
-      child: InkWell(
-        onTap: () {
-          ScaffoldMessenger.of(context)
-            ..hideCurrentSnackBar()
-            ..showSnackBar(
-              SnackBar(content: Text("Kamu telah menekan ${item.name}!")),
-            );
-
-              if (item.name == "Tambah Produk") {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => const ItemEntryFormPage(),
-                ),
-              );// TODO: Gunakan Navigator.push untuk melakukan navigasi ke MaterialPageRoute yang mencakup MoodEntryFormPage.
-            }
-        },
-        child: Container(
-          padding: const EdgeInsets.all(6), // Reduced padding for smaller button
-          child: Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Icon(
-                  item.icon,
-                  color: Colors.white,
-                  size: 24.0, // Reduced icon size
-                ),
-                const SizedBox(height: 3),
-                Text(
-                  item.name,
-                  textAlign: TextAlign.center,
-                  style: const TextStyle(
-                    color: Colors.white,
-                    fontSize: 12.0, 
-                  ),
-                ),
-              ],
-            ),
-          ),
         ),
       ),
     );

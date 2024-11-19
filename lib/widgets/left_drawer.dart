@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:doramiaw/screens/menu.dart';
 import 'package:doramiaw/screens/itementry_form.dart';
+import 'package:doramiaw/screens/list_itementry.dart';
 
 
 class LeftDrawer extends StatelessWidget {
@@ -50,6 +51,17 @@ class LeftDrawer extends StatelessWidget {
                   ));
             },
           ),
+          ListTile(
+            leading: const Icon(Icons.add_reaction_rounded),
+            title: const Text('Lihat Daftar Produk'),
+            onTap: () {
+                // Route menu ke halaman mood
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => const ItemEntryPage()),
+                );
+            },
+        ),
           ListTile(
             leading: const Icon(Icons.shopping_bag),
             title: const Text('Tambah Item'),
