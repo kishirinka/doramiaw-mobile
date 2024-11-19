@@ -1,6 +1,6 @@
+import 'package:doramiaw/screens/item_detail.dart';
 import 'package:flutter/material.dart';
 import 'package:doramiaw/models/item_entry.dart';
-import 'package:doramiaw/widgets/left_drawer.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
 import 'package:provider/provider.dart';
 
@@ -13,13 +13,11 @@ class ItemEntryPage extends StatefulWidget {
 
 class _ItemEntryPageState extends State<ItemEntryPage> {
   Future<List<ObjectEntry>> fetchItem(CookieRequest request) async {
-    // TODO: Ganti URL dan jangan lupa tambahkan trailing slash (/) di akhir URL!
+    // Mengambil data JSON dari endpoint Django
     final response = await request.get('http://localhost:8000/json/');
-    
-    // Melakukan decode response menjadi bentuk json
     var data = response;
-    
-    // Melakukan konversi data json menjadi object MoodEntry
+
+    // Konversi data JSON menjadi list objek ObjectEntry
     List<ObjectEntry> listItem = [];
     for (var d in data) {
       if (d != null) {
@@ -32,11 +30,18 @@ class _ItemEntryPageState extends State<ItemEntryPage> {
   @override
   Widget build(BuildContext context) {
     final request = context.watch<CookieRequest>();
+
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Item Entry List'),
+        title: const Text(
+          'Item Entry List',
+          style: TextStyle(color: Colors.white), // Tulisan putih
+        ),
+        backgroundColor: Theme.of(context).colorScheme.primary, // Warna biru utama
+        leading: BackButton(
+          color: Colors.white, // Panah kembali dengan warna putih
+        ),
       ),
-      drawer: const LeftDrawer(),
       body: FutureBuilder(
         future: fetchItem(request),
         builder: (context, AsyncSnapshot snapshot) {
@@ -56,28 +61,53 @@ class _ItemEntryPageState extends State<ItemEntryPage> {
             } else {
               return ListView.builder(
                 itemCount: snapshot.data!.length,
-                itemBuilder: (_, index) => Container(
+                itemBuilder: (_, index) => Card(
                   margin:
                       const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-                  padding: const EdgeInsets.all(20.0),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        "${snapshot.data![index].fields.name}",
-                        style: const TextStyle(
-                          fontSize: 18.0,
-                          fontWeight: FontWeight.bold,
-                        ),
+                  elevation: 4,
+                  color: Theme.of(context).colorScheme.primary.withOpacity(0.1), 
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(12), 
+                  ),
+                  child: ListTile(
+                    contentPadding: const EdgeInsets.all(16.0),
+                    title: Text(
+                      "${snapshot.data![index].fields.name}",
+                      style: const TextStyle(
+                        fontSize: 18.0,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.black,
                       ),
-                      const SizedBox(height: 10),
-                      Text("${snapshot.data![index].fields.price}"),
-                      const SizedBox(height: 10),
-                      Text("${snapshot.data![index].fields.category}"),
-                      const SizedBox(height: 30),
-                      Text("${snapshot.data![index].fields.description}")
-                    ],
+                    ),
+                    subtitle: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        const SizedBox(height: 8),
+                        Text(
+                          "Harga: ${snapshot.data![index].fields.price}",
+                          style: const TextStyle(fontSize: 14, color: Colors.black54),
+                        ),
+                        const SizedBox(height: 4),
+                        Text(
+                          "Kategori: ${snapshot.data![index].fields.category}",
+                          style: const TextStyle(fontSize: 14, color: Colors.black54),
+                        ),
+                      ],
+                    ),
+                    trailing: Icon(
+                      Icons.arrow_forward_ios,
+                      color: Theme.of(context).colorScheme.secondary, // Warna aksen biru
+                    ),
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => ItemDetailPage(
+                            item: snapshot.data![index],
+                          ),
+                        ),
+                      );
+                    },
                   ),
                 ),
               );
